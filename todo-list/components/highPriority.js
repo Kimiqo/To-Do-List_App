@@ -10,10 +10,10 @@ export default function HighPriority() {
     contentTitle.classList.add('bg-rose-500');
 
     contentHeader.id = 'content-header';
-    contentHeader.classList.add('flex gap-2 h-auto bg-rose-200');
+    contentHeader.classList.add('flex', 'gap-2', 'h-auto', 'bg-rose-200');
 
     contentBody.id = 'content-body';
-    contentBody.classList.add('bg-rose-800 shadow-md rounded-md');
+    contentBody.classList.add('bg-rose-800', 'shadow-md', 'rounded-md');
 
     contentPage.appendChild(contentTitle);
     contentPage.appendChild(contentHeader);

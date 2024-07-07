@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root{
-  --card-width: 200px;
-  --card-height: 200px;
+  --card-width: 1000px;
+  --card-height: 150px;
 }
 
 #sidebar{
@@ -21,7 +21,8 @@
 #content-page{
   background-color: black;
   display: grid;
-  grid-template-rows: 100px 100px 500px;
+  grid-template-rows: 35px 80px 1fr;
+  height: 750px;
 }
 
 #content-body{
@@ -41,6 +42,10 @@
   border-radius: 10px;
 }
 
+#addBtn{
+  background-color: green;
+}
+
 #editBtn{
   background-color: green;
 }
@@ -54,7 +59,7 @@
   display: block;
   color: white;
   padding: 16px;
-  width: 305px;
+  width: 310px;
   text-decoration: none;
 
 }
@@ -71,6 +76,78 @@
   color: red;
 }
 
-#sidebar #sub-folder{
+#sidebar>#folder{
   text-align: right;
 }
+
+/* Lightbox styles */
+dialog{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+dialog{
+  background: black;
+  opacity: 80%;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Drop shadow */
+  max-width: 100%; /* Adjust width as needed */
+  max-height: 100%; /* Adjust height as needed */
+  overflow: auto;
+}
+
+dialog form {
+  display: flex;
+  flex-direction: column;
+}
+
+dialog input,
+dialog select,
+dialog button {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+dialog button[type="submit"] {
+  background-color: #007bff; /* Blue submit button */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+dialog button[type="submit"]:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+dialog button[type="button"] {
+  background-color: #dc3545; /* Red cancel button */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+dialog button[type="button"]:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+
+.dialog-content input[type="date"] {
+  padding: 8px;
+}
+
+.dialog-content input[type="date"]::-webkit-inner-spin-button,
+.dialog-content input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none; /* Hide date input spinner and calendar picker */
+}
+
