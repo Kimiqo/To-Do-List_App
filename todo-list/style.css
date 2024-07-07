@@ -2,8 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
+:root{
+  --card-width: 200px;
+  --card-height: 200px;
+}
+
+#sidebar{
+  height: 700px;
+  width: 300px;
+  background-color: black;
+  color: white;
+}
+
+.showNot{
+  display: none;
+}
+
 #content-page{
-  background-color: aquamarine;
+  background-color: black;
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: 100px 100px 500px;
+}
+
+#content-body{
+  background-color: black;
+  display: grid;
+  grid-template-rows: repeat(auto-fill, minmax(220px, 1fr));
+  height: 600px;
+  overflow-y: scroll;
+}
+
+.card{
+  background-color: whitesmoke;
+  width: var(--card-width);
+  height: var(--card-height);
+  margin: 15px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+#editBtn{
+  background-color: green;
+}
+
+#deleteBtn{
+  background-color: red;
+}
+
+/* Sidebar links */
+#sidebar a {
+  display: block;
+  color: white;
+  padding: 16px;
+  width: 305px;
+  text-decoration: none;
+
+}
+
+/* Active/current link */
+#sidebar a.active {
+  background-color: #aa0404;
+  color: white;
+}
+
+/* Links on mouse-over */
+#sidebar a:hover:not(.active) {
+  background-color: whitesmoke;
+  color: red;
+}
+
+#sidebar #sub-folder{
+  text-align: right;
 }
