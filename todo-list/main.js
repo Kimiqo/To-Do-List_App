@@ -1,6 +1,6 @@
 import './style.css'
-import Home from './components/home.js'
-import HighPriority from './components/highPriority.js'
+import Home from './components/home.js';
+import HighPriority, { getHighPriorityTasks, Settasks } from './components/highPriority.js'
 import Folders from './components/folders.js'
 import Tasks, { setTasks } from './components/tasks.js'
 
@@ -13,10 +13,11 @@ let tasks = [
 ];
 
 setTasks(tasks);
+Settasks(tasks);
 
 const app = document.querySelector('#app');
 const contentPage = document.querySelector('#content-page');
-const homeLink = document.querySelector('#home');
+const homeLink = document.getElementById('home');
 const highPriorityLink = document.querySelector('#high-priority');
 const foldersLink = document.querySelector('#folders');
 const subfolderLink = document.getElementById('subFolders');
@@ -71,8 +72,8 @@ renderSidebar();
 
 homeLink.addEventListener('click', () => {
     subfolderLink.classList.add("showNot");
-    highPriorityLink.classList.remove("active");
     homeLink.classList.add("active");
+    highPriorityLink.classList.remove("active");
     foldersLink.classList.remove("active");
     Home();
 });
@@ -83,6 +84,8 @@ highPriorityLink.addEventListener('click', () => {
     highPriorityLink.classList.add("active");
     foldersLink.classList.remove("active");
     HighPriority();
+    const high = getHighPriorityTasks();
+    console.log(high);
 });
 
 foldersLink.addEventListener('click', () => {

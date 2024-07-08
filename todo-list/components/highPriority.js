@@ -1,3 +1,11 @@
+import { genTaskCard } from './tasks.js';   
+
+let tasks = [];
+
+export function Settasks(newTasks) {
+    tasks = newTasks;
+}
+
 export default function HighPriority() {
     const contentPage = document.querySelector('#content-page');
     contentPage.innerHTML = '';
@@ -10,8 +18,16 @@ export default function HighPriority() {
     contentTitle.innerHTML = "High Priority Tasks";
 
     contentBody.id = 'content-body-hp';
-    contentBody.classList.add('bg-rose-800', 'shadow-md', 'rounded-md');
 
     contentPage.appendChild(contentTitle);
     contentPage.appendChild(contentBody);
+
+    const highPriorityTasks = getHighPriorityTasks();
+    highPriorityTasks.forEach(task => {
+        contentBody.appendChild(genTaskCard(task));
+    });
+}
+
+export function getHighPriorityTasks() {
+    return tasks.filter(task => task.priority === 'High');
 }

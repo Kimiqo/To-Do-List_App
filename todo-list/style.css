@@ -36,7 +36,6 @@
 }
 
 #content-body-task{
-  background-color: white;
   display: grid;
   grid-template-rows: repeat(auto-fill, minmax(220px, 1fr));
   overflow-y: scroll;
@@ -64,12 +63,10 @@
 }
 
 #content-title-hp{
-  color: white;
+  color: black;
 }
 
-#content-body-hp{
-  background-color: white;
-}
+
 
 .card{
   width: var(--card-width);
@@ -139,7 +136,7 @@
 
 #subFolders{
   height: 496px;
-  overflow-y: scroll;
+  width: 305px;
 }
 
 /* Lightbox styles */

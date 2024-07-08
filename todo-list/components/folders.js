@@ -10,7 +10,6 @@ export default function Folders(folders) {
 
     const contentBody = document.createElement('div');
     contentBody.id = 'content-body-folder';
-    contentBody.classList.add('bg-rose-800', 'shadow-md', 'rounded-md');
 
     folders.forEach(folder => {
         const folderElement = document.createElement('div');
