@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 :root{
-  --card-width: 1000px;
-  --card-height: 150px;
+  --card-width: 1100px;
+  --card-height: 190px;
+}
+
+#app{
+  background-color: white;
 }
 
 #sidebar{
@@ -19,27 +23,67 @@
 }
 
 #content-page{
-  background-color: black;
+  background-color: white;
   display: grid;
-  grid-template-rows: 35px 80px 1fr;
+  grid-template-rows: 55px 70px 1fr;
   height: 750px;
 }
 
-#content-body{
-  background-color: black;
+#content-body-folder{
+  display: grid;
+  grid-template: repeat(auto-fill, 220px) / repeat(auto-fill, minmax(205px, 1fr));
+  height: 600px;
+}
+
+#content-body-task{
+  background-color: white;
   display: grid;
   grid-template-rows: repeat(auto-fill, minmax(220px, 1fr));
-  height: 600px;
   overflow-y: scroll;
 }
 
+#content-title{
+  color: black;
+  background-color: white;
+  font-size: 24px;
+  padding-left: 5px;
+}
+
+#content-header{
+  background-color: white;
+  align-items: center;
+  padding-left: 5px;
+}
+
+#foldersElem{
+  background-color: black;
+  width: 200px;
+  height: 200px;
+  margin-top: 10px;
+  color: white;
+}
+
+#content-title-hp{
+  color: white;
+}
+
+#content-body-hp{
+  background-color: white;
+}
+
 .card{
-  background-color: whitesmoke;
   width: var(--card-width);
   height: var(--card-height);
   margin: 15px;
   padding: 5px;
   border-radius: 10px;
+
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #addBtn{
@@ -48,10 +92,19 @@
 
 #editBtn{
   background-color: green;
+  width: 50px;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
 }
 
 #deleteBtn{
   background-color: red;
+  width: 70px;
+  height: 30px;
+  border-radius: 5px;
+  margin-left: 5px;
+  margin-top: 5px;
 }
 
 /* Sidebar links */
@@ -76,8 +129,17 @@
   color: red;
 }
 
-#sidebar>#folder{
+
+#addFolderBtn{
+  background-color: green;
+  padding: 12px;
+  width: 310px;
   text-align: right;
+}
+
+#subFolders{
+  height: 496px;
+  overflow-y: scroll;
 }
 
 /* Lightbox styles */
@@ -92,11 +154,7 @@ dialog{
   justify-content: center;
   align-items: center;
   z-index: 1000;
-}
-
-dialog{
   background: black;
-  opacity: 80%;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Drop shadow */
@@ -115,6 +173,8 @@ dialog select,
 dialog button {
   margin-bottom: 10px;
   padding: 10px;
+  width: 700px;
+  height: 60px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 14px;
@@ -126,28 +186,3 @@ dialog button[type="submit"] {
   border: none;
   cursor: pointer;
 }
-
-dialog button[type="submit"]:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-}
-
-dialog button[type="button"] {
-  background-color: #dc3545; /* Red cancel button */
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-dialog button[type="button"]:hover {
-  background-color: #c82333; /* Darker red on hover */
-}
-
-.dialog-content input[type="date"] {
-  padding: 8px;
-}
-
-.dialog-content input[type="date"]::-webkit-inner-spin-button,
-.dialog-content input[type="date"]::-webkit-calendar-picker-indicator {
-  display: none; /* Hide date input spinner and calendar picker */
-}
-

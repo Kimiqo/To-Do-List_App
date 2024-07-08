@@ -76,7 +76,7 @@ function renderSidebar() {
 
     folders.forEach(folder => {
         const folderElement = document.createElement('div');
-        folderElement.classList.add('grid', 'grid-cols-2', 'justify-between', 'items-center');
+        folderElement.classList.add('grid', 'justify-between', 'items-center');
 
         const folderLink = document.createElement('a');
         folderLink.id = `folder`;
@@ -104,7 +104,7 @@ function renderSidebar() {
 
     const addFolderBtn = document.createElement('button');
     addFolderBtn.innerHTML = 'Add Folder';
-    addFolderBtn.classList.add('bg-black', 'text-white', 'p-4', 'hover:bg-whitesmoke', 'hover:text-red');
+    addFolderBtn.id = 'addFolderBtn';
     addFolderBtn.addEventListener('click', () => {
         const folderName = prompt('Enter folder name:');
         if (folderName) {
@@ -123,7 +123,7 @@ homeLink.addEventListener('click', () => {
     highPriorityLink.classList.remove("active");
     homeLink.classList.add("active");
     foldersLink.classList.remove("active");
-    contentPage.innerHTML = Home();
+    Home();
 });
 
 highPriorityLink.addEventListener('click', () => {
@@ -131,7 +131,7 @@ highPriorityLink.addEventListener('click', () => {
     homeLink.classList.remove("active");
     highPriorityLink.classList.add("active");
     foldersLink.classList.remove("active");
-    contentPage.innerHTML = HighPriority();
+    HighPriority();
 });
 
 foldersLink.addEventListener('click', () => {

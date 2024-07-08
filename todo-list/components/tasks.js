@@ -105,21 +105,31 @@ function genTaskCard(task) {
     const completed = document.createElement("input");
     const editBtn = document.createElement("button");
     const deleteBtn = document.createElement("button");
+    const completedLabel = document.createElement("label");
+    
 
     title.innerHTML = `Title: ${task.title}`;
     desc.innerHTML = `Description: ${task.description}`;
     dueDate.innerHTML = `Due Date: ${task.dueDate}`;
     priority.innerHTML = `Priority: ${task.priority}`;
     completed.type = 'checkbox';
-    completed.checked = `Completed: ${task.completed}`;
-    editBtn.innerHTML = "Edit";
-    deleteBtn.innerHTML = "Delete";
+    completed.id = 'completed';
+    completed.checked = task.completed;
+    completedLabel.setAttribute('for', `${completed.id}`);
+    completedLabel.innerHTML = 'Completed ';
 
+    editBtn.innerHTML = "Edit";
+    editBtn.id = 'editBtn';
+    deleteBtn.innerHTML = "Delete";
+    deleteBtn.id = 'deleteBtn';
+
+    completedLabel.appendChild(completed);
     taskCard.appendChild(title);
     taskCard.appendChild(desc);
     taskCard.appendChild(dueDate);
     taskCard.appendChild(priority);
-    taskCard.appendChild(completed);
+    taskCard.appendChild(completedLabel);
+    taskCard.appendChild(document.createElement('br'));
     taskCard.appendChild(editBtn);
     taskCard.appendChild(deleteBtn);
 
@@ -157,7 +167,7 @@ export default function Tasks(folder) {
     contentHeader.appendChild(addBtn);
 
     const contentBody = document.createElement('div');
-    contentBody.id = "content-body";
+    contentBody.id = "content-body-tasks";
     contentBody.classList.add('bg-rose-800', 'shadow-md', 'rounded-md');
 
     tasks.filter(task => task.folder === folder).forEach(task => {
@@ -240,7 +250,7 @@ function createTaskForm(folder) {
     document.body.appendChild(dialog);
     dialog.showModal();
     closeBtn.addEventListener('click', () => {
-        dialog.close();
+        dialog.style.display = 'none';
     });
 
     return dialog;
