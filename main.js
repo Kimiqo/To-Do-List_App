@@ -3,14 +3,14 @@ import Home from './components/home.js';
 import HighPriority, { getHighPriorityTasks, Settasks } from './components/highPriority.js'
 import Folders from './components/folders.js'
 import Tasks, { setTasks } from './components/tasks.js'
+import { initializeAppState, useAppState, removeFolder } from './components/appState.js'
 
-let folders = ['Folder 1', 'Folder 2'];
-let tasks = [
-    { id: 1, title: "Task 1", description: "Description 1", priority: "High", dueDate: "2021-01-01", completed: false, folder: 'Folder 1' },
-    { id: 2, title: "Task 2", description: "Description 2", priority: "Medium", dueDate: "2021-02-01", completed: true, folder: 'Folder 1' },
-    { id: 3, title: "Task 3", description: "Description 3", priority: "Low", dueDate: "2021-03-01", completed: false, folder: 'Folder 2' },
-    { id: 4, title: "Task 4", description: "Description 4", priority: "High", dueDate: "2021-04-01", completed: true, folder: 'Folder 2' }
-];
+// Start with empty tasks and folders
+let folders = [];
+let tasks = [];
+
+// Initialize app state
+initializeAppState(tasks, folders);
 
 setTasks(tasks);
 Settasks(tasks);
@@ -25,6 +25,8 @@ const subfolderLink = document.getElementById('subFolders');
 function renderSidebar() {
     const sidebar = document.querySelector('#subFolders');
     sidebar.innerHTML = '';
+
+    const { folders } = useAppState();
 
     folders.forEach(folder => {
         const folderElement = document.createElement('div');
@@ -42,11 +44,12 @@ function renderSidebar() {
         deleteBtn.innerHTML = 'Delete';
         deleteBtn.classList.add('text-red-500', 'ml-2');
         deleteBtn.addEventListener('click', () => {
-            folders = folders.filter(f => f !== folder);
-            tasks = tasks.filter(t => t.folder !== folder);
-            setTasks(tasks); // Update tasks in tasks.js
-            renderSidebar();
-            Folders(folders);
+            if (confirm(`Are you sure you want to delete folder "${folder}"?`)) {
+                removeFolder(folder);
+                renderSidebar();
+                Folders(useAppState().folders);
+                Home(); // Re-render home page to update stats
+            }
         });
 
         folderElement.appendChild(folderLink);
@@ -62,7 +65,7 @@ function renderSidebar() {
         if (folderName) {
             folders.push(folderName);
             renderSidebar();
-            Folders(folders);
+            Folders(useAppState().folders);
         }
     });
     sidebar.appendChild(addFolderBtn);
@@ -93,6 +96,10 @@ foldersLink.addEventListener('click', () => {
     homeLink.classList.remove("active");
     highPriorityLink.classList.remove("active");
     foldersLink.classList.add("active");
-    Folders(folders);
+    Folders(useAppState().folders);
 });
 
+// Ensure Home is called when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    Home();
+});
